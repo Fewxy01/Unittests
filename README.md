@@ -1,4 +1,4 @@
-:sparkles: # Написание Unit тестов :sparkles:
+# :sparkles: Написание Unit тестов :sparkles:
 
 ## 1. Цели и задачи тестирования
 
