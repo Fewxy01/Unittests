@@ -63,7 +63,7 @@ ubuntu-latest и windows-latest.
 
 **.github/workflows**
 
-\```
+```
 name: Run Unit Tests
 
 on:
@@ -97,4 +97,4 @@ jobs:
     - name: Run unit tests
       run: |
         python -m unittest discover -s . -p "test*.py"
-\```
+```
