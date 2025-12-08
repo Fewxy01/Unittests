@@ -56,4 +56,45 @@ def perimeter(a, b):
 - отсутствие ошибок в вычислениях
 - отчет тестовой системы о количестве выполненных тестов, статусе тестов(успешен или провален) и сообщение об ошибках при их наличии
 
+## Тестировка
+Настроен CI-процесс с использованием GitHub Actions.
+После каждого push автоматически запускаются unit-тесты на двух окружениях:
+ubuntu-latest и windows-latest.
 
+**.github/workflows**
+
+\```
+name: Run Unit Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    name: Run tests on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies
+      run: |
+        pip install --upgrade pip
+
+    - name: Run unit tests
+      run: |
+        python -m unittest discover -s . -p "test*.py"
+\```
